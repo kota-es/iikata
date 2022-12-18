@@ -6,33 +6,31 @@ import { useState } from "react";
 import axios from "axios";
 
 type ResultType = {
-  strongest: string,
-  scores : {
-    subject: string,
-    score: number
-  }[]
-}
-
+  strongest: string;
+  scores: {
+    subject: string;
+    score: number;
+  }[];
+};
 
 const App = () => {
   const [text, setText] = useState<string>("");
   const [result, setResult] = useState<ResultType>({
-    strongest: '',
-    scores: []
-  })
+    strongest: "",
+    scores: [],
+  });
 
   const analyze = async () => {
-    const res = await axios.post(
-      "http://localhost:3000/analysis",
-      { text: text }
-    );
+    const res = await axios.post("http://localhost:3000/analysis", {
+      text: text,
+    });
 
-    const result = makeResult(res.data)
-    setResult(result)
+    const result = makeResult(res.data);
+    setResult(result);
   };
 
   const makeResult = (res: any) => {
-    console.log(res)
+    console.log(res);
     const result = res.ResultList[0];
     const strongest = result.Sentiment;
     const data = result.SentimentScore;
@@ -44,16 +42,19 @@ const App = () => {
     });
     return {
       strongest,
-      scores
-    }
-  }
+      scores,
+    };
+  };
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home analyze={analyze} setText={setText} />} />
-          <Route path="result" element={<Result result={result} text={text} />} />
+          <Route
+            path="result"
+            element={<Result result={result} text={text} />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

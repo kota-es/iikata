@@ -1,20 +1,19 @@
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import SubmitButton from "../components/atoms/RoundedButton";
 import TextArea from "../components/atoms/TextArea";
 
 type HomeType = {
-  analyze: () => Promise<void>,
-  setText: React.Dispatch<React.SetStateAction<string>>,
-}
+  analyze: () => Promise<void>;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const Home = ({analyze, setText}: HomeType) => {
-  const navigate = useNavigate()
+const Home = ({ analyze, setText }: HomeType) => {
+  const navigate = useNavigate();
 
   const executeAnalyze = async () => {
-    await analyze()
-    navigate('/result')
-
-  }
+    await analyze();
+    navigate("/result");
+  };
 
   return (
     <main className="container mx-auto px-5">
