@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Chart from "../components/molecules/Chart";
+import Chart from "../components/molecules";
 import ResultComment from "../components/organisms/ResultComment"
 import SubmitButton from "../components/atoms/RoundedButton";
 
